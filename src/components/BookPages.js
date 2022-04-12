@@ -15,9 +15,9 @@ const BookPages = () => {
     // const eachString = subStrings.map((string) =>
     //   console.log('string', string)
     // );
-    if (getSelection) {
-      console.log(getSelection().toString());
-    }
+    // if (getSelection) {
+    //   console.log(getSelection().toString());
+    // }
   };
 
   return (
