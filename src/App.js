@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import BookPages from './components/BookPages';
 
@@ -10,9 +11,11 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <div style={{ padding: 20 }}>
-        <BookPages />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<BookPages />} />
+        </Routes>
+      </Router>
     </ApolloProvider>
   );
 };
