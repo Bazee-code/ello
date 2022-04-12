@@ -11,7 +11,16 @@ const BookPages = () => {
   if (error) return <p>Error : {error}</p>;
   return (
     <div>
-      <p>Book pages here</p>
+      <h3>Page Content</h3>
+      <ul>
+        {data && data.book && data.book.pages?.length > 0 ? (
+          data.book.pages.map((page, index) => (
+            <li key={index}>{page.content}</li>
+          ))
+        ) : (
+          <p>Page empty</p>
+        )}
+      </ul>
     </div>
   );
 };
