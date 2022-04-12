@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GET_BOOK_PAGES } from '../queries/queries';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -8,9 +8,7 @@ const BookPages = () => {
   const [selectedText, setSelectedText] = useState('');
   const navigate = useNavigate();
 
-  console.log('selected text', selectedText);
-
-  useState(() => {
+  useEffect(() => {
     setSelectedText(selectedText);
   }, [selectedText]);
 
@@ -43,7 +41,6 @@ const BookPages = () => {
                 cursor: 'pointer',
               }}
               onClick={(e) => {
-                // e.persist();
                 handleClick(pageToken);
               }}
             >
