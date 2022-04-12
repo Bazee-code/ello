@@ -27,7 +27,7 @@ const BookPages = () => {
 
   return (
     <div>
-      <h3>Page Content</h3>
+      <h3 style={{ paddingLeft: 20 }}>Page Content</h3>
 
       {data && data.book && data.book.pages?.length > 0 ? (
         data.book.pages.map((page, index) => {
@@ -38,9 +38,10 @@ const BookPages = () => {
               key={index}
               style={{
                 fontSize: 15,
+                paddingLeft: 20,
                 cursor: 'pointer',
               }}
-              onClick={(e) => {
+              onClick={() => {
                 handleClick(pageToken);
               }}
             >
