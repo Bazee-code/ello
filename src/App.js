@@ -17,7 +17,10 @@ const App = () => {
           element={<BookPages data={data} error={error} loading={loading} />}
         />
         <Route path="/:tokenValue" element={<TokenValue />} />
-        <Route path="/book/:pageIndex" element={<EachBook />} />
+        <Route
+          path="/book/:pageIndex"
+          element={<EachBook data={data} loading={loading} error={error} />}
+        />
       </Routes>
     </Router>
   );
