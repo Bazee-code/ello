@@ -4,6 +4,7 @@ const Button = ({ title, handleClick }) => {
   return (
     <button
       onClick={handleClick}
+      type="button"
       style={{
         borderRadius: 10,
         backgroundColor: 'green',
