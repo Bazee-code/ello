@@ -8,7 +8,7 @@ const TokenValue = () => {
     <>
       <p
         style={{
-          fontSize: 15,
+          fontSize: 30,
           padding: 20,
         }}
       >

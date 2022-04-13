@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
 
-const Pagination = ({ data }) => {
+const Pagination = () => {
   let navigate = useNavigate();
   let [pageIndex, setPageIndex] = useState(0);
 
