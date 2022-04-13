@@ -1,9 +1,21 @@
 import Pagination from './Pagination';
 import { useParams } from 'react-router-dom';
 
-const EachBook = () => {
+const EachBook = ({ data, loading, error }) => {
   let params = useParams();
-  console.log('params', params);
+  console.log('data', data);
+  console.log('params', params.pageIndex);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error}</p>;
+
+  const bookContent =
+    data &&
+    data.book &&
+    data.book.pages?.length > 0 &&
+    data.book.pages.map((book) =>
+      params.pageIndex == book.pageIndex ? book.content : null
+    );
 
   return (
     <div
@@ -12,8 +24,7 @@ const EachBook = () => {
       }}
     >
       <h3>Page Number : {params.pageIndex}</h3>
-      {/* get data from context , map , compare current page index to data page index and render page content */}
-      <h5>Page Content : </h5>
+      <h5>Page Content : {bookContent}</h5>
       <Pagination />
     </div>
   );
