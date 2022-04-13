@@ -1,24 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import BookPages from './components/BookPages';
 import TokenValue from './components/TokenValue';
-
-const client = new ApolloClient({
-  uri: 'https://fullstack-engineer-test-n4ouilzfna-uc.a.run.app/graphql',
-  cache: new InMemoryCache(),
-});
+import EachBook from './components/EachBook';
+import { GET_BOOK_PAGES } from './queries/queries';
 
 const App = () => {
+  const { data, loading, error } = useQuery(GET_BOOK_PAGES);
+
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<BookPages />} />
-          <Route path="/:tokenValue" element={<TokenValue />} />
-        </Routes>
-      </Router>
-    </ApolloProvider>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={<BookPages data={data} error={error} loading={loading} />}
+        />
+        <Route path="/:tokenValue" element={<TokenValue />} />
+        <Route path="/book/:pageIndex" element={<EachBook />} />
+      </Routes>
+    </Router>
   );
 };
 

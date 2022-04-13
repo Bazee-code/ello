@@ -1,13 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Button from './Button';
+
 const Pagination = ({ data }) => {
-  console.log('data', data);
+  let navigate = useNavigate();
+  let [pageIndex, setPageIndex] = useState(0);
+
+  const handleClick = () => {
+    setPageIndex(pageIndex + 2);
+    navigate(`/book/${pageIndex}`);
+  };
+
   return (
     <div>
-      {data && data.book && data.book.pages?.length > 0
-        ? data.book.pages.map(
-            (page) =>
-              page.pageIndex % 2 === 0 && <button>{page.pageIndex}</button>
-          )
-        : null}
+      <Button title="Next Page" handleClick={handleClick} />
     </div>
   );
 };

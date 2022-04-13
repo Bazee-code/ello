@@ -1,10 +1,8 @@
-import { useQuery } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
-import { GET_BOOK_PAGES } from '../queries/queries';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Pagination from './Pagination';
 
-const BookPages = () => {
-  const { data, loading, error } = useQuery(GET_BOOK_PAGES);
+const BookPages = ({ data, loading, error }) => {
   const [selectedText, setSelectedText] = useState('');
   const navigate = useNavigate();
 
@@ -26,8 +24,8 @@ const BookPages = () => {
   };
 
   return (
-    <div>
-      <h3 style={{ paddingLeft: 20 }}>Page Content</h3>
+    <div style={{ paddingLeft: 20 }}>
+      <h3>Page Content</h3>
 
       {data && data.book && data.book.pages?.length > 0 ? (
         data.book.pages.map((page, index) => {
@@ -38,7 +36,6 @@ const BookPages = () => {
               key={index}
               style={{
                 fontSize: 15,
-                paddingLeft: 20,
                 cursor: 'pointer',
               }}
               onClick={() => {
@@ -50,8 +47,9 @@ const BookPages = () => {
           );
         })
       ) : (
-        <p>Page empty</p>
+        <p>No books</p>
       )}
+      <Pagination data={data} />
     </div>
   );
 };
